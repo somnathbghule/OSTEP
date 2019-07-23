@@ -1,10 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstring.h>
+
+
+
+
 
 int main(int argc, char **argv){
 	
 	if ( argc>1 )
-		printf("%s\n", argv[0]);
+		cout<< argv[0]<<endl;
+
+	CString cstring("Somnath");
 	
 	//return 0
 	return (0);
