@@ -14,6 +14,22 @@ int CString::len( const char * cstring){
 		tlen++;
 	return tlen;
 }
+bool CString::operator<(const CString &cstring){
+
+			
+		
+	return true;
+}
+
+int CString::cmp(const char *cstring_1, const char *cstring_2){
+
+	int cmp	;
+	while( *cstring_1 ){
+	
+	}
+
+	return 0;
+}
 
 bool CString::copy(char *cstring, const char *cstringdest){
 	while( *cstringdest )

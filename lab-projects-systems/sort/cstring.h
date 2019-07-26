@@ -9,10 +9,12 @@ class CString {
 		CString(const char *cstring);
 		int len();
 		void show();
+		bool operator<(const CString &cstring);
 	private:
 		CString();
 		int len(const char *cstring);
 		bool copy(char *cstring, const char *cstringdest);
+		int  cmp(const char *cstring_1, const char *cstring_2);
 		char *cstring_;
 };
 
