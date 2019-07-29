@@ -10,6 +10,7 @@ class CString {
 		int len();
 		void show();
 		bool operator<(const CString &cstring);
+		const char *cstring() const;
 	private:
 		CString();
 		int len(const char *cstring);
