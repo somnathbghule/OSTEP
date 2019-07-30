@@ -1,7 +1,6 @@
 #include <cstring.h>
 
 
-
 void swapStrings(char **str1, char **str2){
 	char *temp=*str1;
 	*str1=*str2;
@@ -37,30 +36,59 @@ void sortStrings(char **arr, int asize) {
 }
 
 void showSortedOutput( char **arr, int asize ){
+	
 	int i=0;
 	while( i < asize  ){
 		cout<< arr[i++] <<endl;
 	}
 }
 
+
+void readFileFillArray(char *filename, char **arr, int *asize){
+	*asize = 0;
+	int fd = open(filename, O_RDONLY);
+	if( fd==-1 ){
+		printf("open failed\n");
+		return;
+	}
+
+	char buf[1];
+	char tempBuf[1024];
+	int i=0;
+	int j=0;
+	while ( read(fd,buf,1) == 1 ){
+
+		if (*buf==EOF){
+			break;
+		}
+		if ( *buf != '\n' ){
+			tempBuf[i++]=*buf;
+		}else {
+		
+			tempBuf[i]='\0';			
+			arr[j] = (char *)malloc(sizeof(char)*i);
+			strcpy(arr[j], tempBuf);
+			i=0;
+			j++;
+		}		
+	}
+	*asize=j;
+	close(fd);
+}
+
 int main(int argc, char **argv){
 
-	char * arr []  = { "Somnath", "Bhaskar", "Ghule" };
-	int asize = 3;
+	char * arr[1024] ;
+	int asize=0;
 
-	if ( argc > 1 )
+	if ( argc != 2 ){
 		cout<< argv[0]<<endl;
-
-	CString cstring1("anc");
-	CString cstring2("aNc");
+		return 0;
+	}
 	
-/*	
-	if( cstring1 < cstring2 ){
-		cout<<"True"<<endl;
-	}else
-		cout << "False" <<endl;
-*/
-	showSortedOutput(arr, asize);
+	readFileFillArray(argv[1], arr, &asize);
+
+	//showSortedOutput(arr, asize);
 	sortStrings(arr, asize);
 	showSortedOutput(arr, asize);
 

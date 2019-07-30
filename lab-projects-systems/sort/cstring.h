@@ -2,6 +2,11 @@
 #define CSTRING_H
 
 #include <iostream>
+#include <sys/types.h>
+#include <sys/fcntl.h>
+#include <unistd.h>
+#include <string.h>
+
 using namespace std;
 
 class CString {
