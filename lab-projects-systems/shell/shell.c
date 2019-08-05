@@ -2,19 +2,22 @@
 #include <stdio.h>
 #include <shell.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 
 int executeShell(const char *argv){
 
-	int fd;
-	fd=fork();
+	int cfd;
+	int status = 0;
+	cfd=fork();
+	int wstatus=0;
 
-	if( fd == 0 ){ //new child process
-		execlp(argv, argv, NULL);
+	if( cfd == 0 ){ //new child process
+		status = execlp(argv, argv, NULL);
 
 	}
-	
-	return 0;
+	wait(&wstatus);
+	return status;
 }
 
 
@@ -24,8 +27,10 @@ int main(int argc, char **argv) {
 	char buf[512];
 
 	while (1){
-		printf("\nsh$ ");
-		scanf("%s",buf);	
+		printf("sh$ ");
+		//scanf("%s",buf);	
+		gets(buf);
+		printf(buf);
 		executeShell(buf);
 	}
 
