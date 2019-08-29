@@ -4,6 +4,20 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+typedef struct cmd {
+	char bin[32];
+	char argv[1024];
+}cmd;
+
+int parseCmd(const char *argv){
+	int i = 0;
+	while(argv[i]){
+		if( i==0 ){
+			
+		}
+		i++;
+	}
+}
 
 int executeShell(const char *argv){
 
@@ -27,10 +41,11 @@ int main(int argc, char **argv) {
 	char buf[512];
 
 	while (1){
+
 		printf("sh$ ");
-		//scanf("%s",buf);	
-		gets(buf);
-		printf(buf);
+		//scanf("%[^\n]",buf);	
+		gets(buf);	
+		printf("inputwas:%s\n",buf);
 		executeShell(buf);
 	}
 
