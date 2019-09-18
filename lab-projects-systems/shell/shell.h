@@ -1,7 +1,7 @@
 #ifndef shell_h
 #define shell_h
 
-#define debug 1
+#define debug 0
 
 #ifdef debug 
 #define dprintf printf 
